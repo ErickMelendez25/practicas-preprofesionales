@@ -12,12 +12,12 @@ import './styles/Global.css';
 // Componente para proteger las rutas
 function ProtectedRoute({ element }) {
   const isAuthenticated = localStorage.getItem('authToken'); // Verifica si el token existe
-  return isAuthenticated ? element : <Navigate to="/practicas-preprofesionales/login" replace />;
+  return isAuthenticated ? element : <Navigate to="/login" replace />;
 }
 
 function App() {
   return (
-    <Router basename="/practicas-preprofesionales"> {/* Configuración de basename para la subcarpeta */}
+    <Router basename="/practicas-preprofesionales"> {/* Usamos basename para trabajar con la subcarpeta en GitHub Pages */}
       <Routes>
         {/* Ruta para el Login */}
         <Route path="/login" element={<Login />} />
