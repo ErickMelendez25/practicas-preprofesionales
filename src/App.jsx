@@ -12,7 +12,7 @@ import './styles/Global.css';
 // Componente para proteger las rutas
 function ProtectedRoute({ element }) {
   const isAuthenticated = localStorage.getItem('authToken'); // Verifica si el token existe
-  return isAuthenticated ? element : <Navigate to="/" replace />;
+  return isAuthenticated ? element : <Navigate to="/practicas-preprofesionales" replace />; // Redirige a la subcarpeta
 }
 
 function App() {
@@ -53,6 +53,7 @@ function App() {
           <Route path=":proceso" element={<ProtectedRoute element={<Proceso />} />} />
         </Route>
 
+        {/* Otra ruta protegida para Macroprocesos */}
         <Route path="/Sistemas/Macroprocesos" element={<ProtectedRoute element={<Macroprocesos />} />} />
       </Routes>
     </Router>
