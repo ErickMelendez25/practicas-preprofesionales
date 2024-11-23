@@ -1,27 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Importa Navigate para redirigir
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import DashboardHeader from './components/DashboardHeader';
 import DashboardFooter from './components/DashboardFooter';
 import DashboardMain from './components/DashboardMain';
 import Login from './components/Login';
 import VistaOpcion from './components/VistaOpcion';
-import Proceso from './components/Proceso'; // Componente para mostrar el proceso
+import Proceso from './components/Proceso';
 import Macroprocesos from './pages/Macroprocesos';
 import './styles/Global.css';
 
 // Componente para proteger las rutas
 function ProtectedRoute({ element }) {
   const isAuthenticated = localStorage.getItem('authToken'); // Verifica si el token existe
-
-  // Si no está autenticado, redirige al login, sino muestra el componente solicitado
   return isAuthenticated ? element : <Navigate to="/" replace />;
 }
 
 function App() {
   return (
-    <Router>
+    <Router basename="/practicas-preprofesionales"> {/* Usamos el basename para trabajar con la subcarpeta en GitHub Pages */}
       <Routes>
-        {/* Ruta para Login */}
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
 
@@ -47,17 +44,15 @@ function App() {
             element={
               <>
                 <DashboardHeader />
-                <VistaOpcion /> {/* Mostrar la opción seleccionada */}
+                <VistaOpcion />
                 <DashboardFooter />
               </>
             }
           />
         }>
-          {/* Rutas para los procesos dentro de cada opción */}
           <Route path=":proceso" element={<ProtectedRoute element={<Proceso />} />} />
         </Route>
 
-        {/* Ruta para otras páginas */}
         <Route path="/Sistemas/Macroprocesos" element={<ProtectedRoute element={<Macroprocesos />} />} />
       </Routes>
     </Router>

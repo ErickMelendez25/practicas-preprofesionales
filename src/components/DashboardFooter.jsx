@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Importamos Link para las rutas
+import { BASE_URL } from '../config';  // Importar la constante BASE_URL
 import '../styles/DashboardFooter.css';
 
 function DashboardFooter() {
@@ -21,11 +22,11 @@ function DashboardFooter() {
       {window.location.pathname === "/dashboard" && (
         <div className="footer-options">
           {/* Enlaces a las opciones que mencionaste */}
-          <Link to="/seguridad-salud-trabajo" className="footer-item">Seguridad y salud en el trabajo</Link>
-          <Link to="/gestion-talento-humano" className="footer-item">Gestión del talento humano</Link>
-          <Link to="/informacion-comunicacion" className="footer-item">Información y comunicación</Link>
-          <Link to="/bienestar-organizacional" className="footer-item">Bienestar organizacional</Link>
-          <Link to="/consejeria-academica" className="footer-item">Consejería académica</Link>
+          <Link to={`${BASE_URL}/seguridad-salud-trabajo`} className="footer-item">Seguridad y salud en el trabajo</Link>
+          <Link to={`${BASE_URL}/gestion-talento-humano`} className="footer-item">Gestión del talento humano</Link>
+          <Link to={`${BASE_URL}/informacion-comunicacion`} className="footer-item">Información y comunicación</Link>
+          <Link to={`${BASE_URL}/bienestar-organizacional`} className="footer-item">Bienestar organizacional</Link>
+          <Link to={`${BASE_URL}/consejeria-academica`} className="footer-item">Consejería académica</Link>
         </div>
       )}
 
@@ -35,7 +36,6 @@ function DashboardFooter() {
           <h3>{fullText}</h3>
         </div>
       )}
-
     </footer>
   );
 }

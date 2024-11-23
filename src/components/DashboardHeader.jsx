@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { BASE_URL } from '../config';  // Importar la constante BASE_URL
 import '../styles/DashboardHeader.css';
 
 const handleLogout = () => {
@@ -58,10 +59,11 @@ function DashboardHeader() {
     <header className="dashboard-header">
       <div className="logo-container">
         <Link to="/dashboard" className="logo-link">
-          <img src="/images/logo.png" alt="Logo de CampusUC" className={titleVisible ? 'logo-animate' : ''} />
+          {/* Usar BASE_URL para las imágenes */}
+          <img src={`${BASE_URL}/images/logo.png`} alt="Logo de CampusUC" className={titleVisible ? 'logo-animate' : ''} />
         </Link>
         <Link to="/dashboard" className="logo-link">
-          <img src="/images/sist.png" alt="Logo Sist" className={titleVisible ? 'logo-animate' : ''} />
+          <img src={`${BASE_URL}/images/sist.png`} alt="Logo Sist" className={titleVisible ? 'logo-animate' : ''} />
         </Link>
       </div>
 
@@ -89,9 +91,9 @@ function DashboardHeader() {
 
       {/* Ícono de usuario */}
       <div className="user-icon-container">
-        {/* Reemplaza el icono con la imagen sist.jpg */}
+        {/* Usamos BASE_URL para las imágenes */}
         <img 
-          src="/images/inge.jpg" 
+          src={`${BASE_URL}/images/inge.jpg`} 
           alt="Icono de usuario" 
           className="user-icon" 
           onClick={toggleMenu} 
