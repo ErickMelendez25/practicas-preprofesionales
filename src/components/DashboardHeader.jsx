@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BASE_URL } from '../config';  // Importar la constante BASE_URL
+import { BASE_URL } from '../config';  // Asegúrate de que BASE_URL esté configurado
 import '../styles/DashboardHeader.css';
 
 const handleLogout = () => {
   // Eliminar el token del localStorage
   localStorage.removeItem('authToken');
   // Redirigir al login
-  window.location.href = '/';
+  window.location.href = '/practicas-preprofesionales/';
 };
 
 function DashboardHeader() {
@@ -17,11 +17,11 @@ function DashboardHeader() {
   const [titleVisible, setTitleVisible] = useState(false);
 
   // Verifica si estamos en la página principal del dashboard
-  const isDashboard = location.pathname === "/dashboard";
-  
+  const isDashboard = location.pathname === "/practicas-preprofesionales/dashboard";
+
   // Obtener la opción actual desde la URL (si existe) y decodificarla
-  const opcion = location.pathname.split('/')[2];
-  
+  const opcion = location.pathname.split('/')[3];
+
   // Decodificar la URL y reemplazar los guiones por espacios
   const decodedTitle = opcion ? decodeURIComponent(opcion.replaceAll('-', ' ')) : ''; 
 
@@ -58,11 +58,11 @@ function DashboardHeader() {
   return (
     <header className="dashboard-header">
       <div className="logo-container">
-        <Link to="/dashboard" className="logo-link">
+        <Link to="/practicas-preprofesionales/dashboard" className="logo-link">
           {/* Usar BASE_URL para las imágenes */}
           <img src={`${BASE_URL}/images/logo.png`} alt="Logo de CampusUC" className={titleVisible ? 'logo-animate' : ''} />
         </Link>
-        <Link to="/dashboard" className="logo-link">
+        <Link to="/practicas-preprofesionales/dashboard" className="logo-link">
           <img src={`${BASE_URL}/images/sist.png`} alt="Logo Sist" className={titleVisible ? 'logo-animate' : ''} />
         </Link>
       </div>
@@ -78,10 +78,10 @@ function DashboardHeader() {
             <div className="navbar-container">
               <nav className="navbar">
                 <ul className="header-options">
-                  <li><Link to="/dashboard/Direccionamiento-Estratégico" className="nav-item">Direccionamiento Estratégico</Link></li>
-                  <li><Link to="/dashboard/Gestión-para-Organizaciones-educativas" className="nav-item">Gestión para Organizaciones educativas</Link></li>
-                  <li><Link to="/dashboard/Responsabilidad-Social" className="nav-item">Responsabilidad Social</Link></li>
-                  <li><Link to="/dashboard/Sostenibilidad-Ambiental" className="nav-item">Sostenibilidad Ambiental</Link></li>
+                  <li><Link to="/practicas-preprofesionales/dashboard/Direccionamiento-Estratégico" className="nav-item">Direccionamiento Estratégico</Link></li>
+                  <li><Link to="/practicas-preprofesionales/dashboard/Gestión-para-Organizaciones-educativas" className="nav-item">Gestión para Organizaciones educativas</Link></li>
+                  <li><Link to="/practicas-preprofesionales/dashboard/Responsabilidad-Social" className="nav-item">Responsabilidad Social</Link></li>
+                  <li><Link to="/practicas-preprofesionales/dashboard/Sostenibilidad-Ambiental" className="nav-item">Sostenibilidad Ambiental</Link></li>
                 </ul>
               </nav>
             </div>

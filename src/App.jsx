@@ -12,12 +12,12 @@ import './styles/Global.css';
 // Componente para proteger las rutas
 function ProtectedRoute({ element }) {
   const isAuthenticated = localStorage.getItem('authToken'); // Verifica si el token existe
-  return isAuthenticated ? element : <Navigate to="/practicas-preprofesionales" replace />; // Redirige a la subcarpeta
+  return isAuthenticated ? element : <Navigate to="/practicas-preprofesionales/" replace />;
 }
 
 function App() {
   return (
-    <Router basename="/practicas-preprofesionales"> {/* Usamos el basename para trabajar con la subcarpeta en GitHub Pages */}
+    <Router basename="/practicas-preprofesionales"> {/* Configuración de basename para subcarpeta */}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
@@ -53,7 +53,6 @@ function App() {
           <Route path=":proceso" element={<ProtectedRoute element={<Proceso />} />} />
         </Route>
 
-        {/* Otra ruta protegida para Macroprocesos */}
         <Route path="/Sistemas/Macroprocesos" element={<ProtectedRoute element={<Macroprocesos />} />} />
       </Routes>
     </Router>
