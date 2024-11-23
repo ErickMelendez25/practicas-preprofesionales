@@ -58,7 +58,7 @@ function App() {
         <Route path="/Sistemas/Macroprocesos" element={<ProtectedRoute element={<Macroprocesos />} />} />
         
         {/* Ruta raíz, redirige al login si no hay un token de autenticación */}
-        <Route path="/" element={<Navigate to="/practicas-preprofesionales/login" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );
