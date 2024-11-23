@@ -12,17 +12,17 @@ import './styles/Global.css';
 // Componente para proteger las rutas
 function ProtectedRoute({ element }) {
   const isAuthenticated = localStorage.getItem('authToken'); // Verifica si el token existe
-  return isAuthenticated ? element : <Navigate to="/practicas-preprofesionales/" replace />;
+  return isAuthenticated ? element : <Navigate to="/practicas-preprofesionales/login" replace />;
 }
 
 function App() {
   return (
-    <Router basename="/practicas-preprofesionales"> {/* Configuración de basename para subcarpeta */}
+    <Router basename="/practicas-preprofesionales"> {/* Configuración de basename para la subcarpeta */}
       <Routes>
-        <Route path="/" element={<Login />} />
+        {/* Ruta para el Login */}
         <Route path="/login" element={<Login />} />
 
-        {/* Ruta para Dashboard - Protección con ProtectedRoute */}
+        {/* Ruta protegida para el Dashboard, si no está logueado, redirige a /login */}
         <Route
           path="/dashboard"
           element={
@@ -38,7 +38,7 @@ function App() {
           }
         />
 
-        {/* Ruta para la vista de cada opción seleccionada dentro del Dashboard */}
+        {/* Ruta para las opciones dentro del Dashboard */}
         <Route path="/dashboard/:opcion" element={
           <ProtectedRoute
             element={
@@ -50,10 +50,15 @@ function App() {
             }
           />
         }>
+          {/* Ruta para un proceso específico dentro de la opción */}
           <Route path=":proceso" element={<ProtectedRoute element={<Proceso />} />} />
         </Route>
 
+        {/* Ruta para la página Macroprocesos, protegida */}
         <Route path="/Sistemas/Macroprocesos" element={<ProtectedRoute element={<Macroprocesos />} />} />
+        
+        {/* Ruta raíz, redirige al login si no hay un token de autenticación */}
+        <Route path="/" element={<Navigate to="/practicas-preprofesionales/login" />} />
       </Routes>
     </Router>
   );
